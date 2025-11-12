@@ -12,7 +12,7 @@ export const Cart = ({ cart, onRemove, onBack, token, onBookingCreated }) => {
         quantity: c.quantity
       }));
 
-      const res = await fetch(`${process.env.REACT_APP_BACKENDURL}/api/bookings`, {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/bookings`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

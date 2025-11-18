@@ -25,7 +25,7 @@ export const AdminPanel = ({ token, onScanQR }) => {
 
   const handleStatusUpdate = async (bookingId, status) => {
     try {
-      const res = await fetch(`${process.env.REACT_APP_BACKENDURL}/api/bookings/${bookingId}`, {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/bookings/${bookingId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

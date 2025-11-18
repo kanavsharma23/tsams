@@ -1,4 +1,4 @@
-const BASE_URL =
+export const API_URL =
   process.env.REACT_APP_API_URL ||
   "https://tsams-backend.onrender.com";
 
@@ -6,7 +6,7 @@ export const apiService = {
   // 🔹 Login
   login: async (email, password) => {
     try {
-      const res = await fetch(`${BASE_URL}/api/users/login`, {
+      const res = await fetch(`${API_URL}/api/users/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -28,7 +28,7 @@ export const apiService = {
   // 🔹 Register
   register: async (name, email, password) => {
     try {
-      const res = await fetch(`${BASE_URL}/api/users/register`, {
+      const res = await fetch(`${API_URL}/api/users/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, password }),
@@ -50,7 +50,7 @@ export const apiService = {
   // 🔹 Profile
   getUserProfile: async (token) => {
     try {
-      const res = await fetch(`${BASE_URL}/api/users/profile`, {
+      const res = await fetch(`${API_URL}/api/users/profile`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -69,13 +69,13 @@ export const apiService = {
 
   // 🔹 Items
   getItems: async () => {
-    const res = await fetch(`${BASE_URL}/api/items`);
+    const res = await fetch(`${API_URL}/api/items`);
     return res.json();
   },
 
   // 🔹 Bookings
   getBookings: async (token) => {
-    const res = await fetch(`${BASE_URL}/api/bookings`, {
+    const res = await fetch(`${API_URL}/api/bookings`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     return res.json();

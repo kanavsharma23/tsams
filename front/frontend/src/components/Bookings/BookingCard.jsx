@@ -49,9 +49,7 @@ export const BookingCard = ({ booking }) => {
         ))}
       </div>
 
-      {booking.status === 'approved' && (
-        <QRCodeDisplay bookingId={booking._id} />
-      )}
+      <QRCodeDisplay bookingId={booking._id} />
     </div>
   );
 };

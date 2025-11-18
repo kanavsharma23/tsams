@@ -1,18 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Camera } from 'lucide-react';
 import { AdminBookingCard } from './AdminBookingCard';
 import { LoadingSpinner } from '../Common/LoadingSpinner';
-import { apiService } from '../../services/api';
+import { apiService, API_URL } from '../../services/api';
 
 export const AdminPanel = ({ token, onScanQR }) => {
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetchBookings();
-  }, []);
-
-  const fetchBookings = async () => {
+  const fetchBookings = useCallback(async () => {
     try {
       const data = await apiService.getBookings(token);
       setBookings(data);
@@ -21,11 +17,15 @@ export const AdminPanel = ({ token, onScanQR }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [token]);
+
+  useEffect(() => {
+    fetchBookings();
+  }, [fetchBookings]);
 
   const handleStatusUpdate = async (bookingId, status) => {
     try {
-      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/bookings/${bookingId}`, {
+      const res = await fetch(`${API_URL}/api/bookings/${bookingId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

@@ -3,6 +3,7 @@ import { Scanner } from '@yudiel/react-qr-scanner';
 import { ArrowLeft, CheckCircle } from 'lucide-react';
 import { ScanModal } from './ScanModal';
 import toast from 'react-hot-toast';
+import { API_URL } from '../../services/api';
 
 export const QRScanner = ({ token, onBack }) => {
   const [scannedBooking, setScannedBooking] = useState(null);
@@ -13,7 +14,7 @@ export const QRScanner = ({ token, onBack }) => {
     const bookingId = result[0].rawValue;
     
     try {
-      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/bookings/${bookingId}`, {
+      const res = await fetch(`${API_URL}/api/bookings/${bookingId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
@@ -32,7 +33,7 @@ export const QRScanner = ({ token, onBack }) => {
 
   const handleStatusUpdate = async (bookingId, status) => {
     try {
-      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/bookings/${bookingId}`, {
+      const res = await fetch(`${API_URL}/api/bookings/${bookingId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

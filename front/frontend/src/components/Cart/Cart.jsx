@@ -3,6 +3,7 @@ import { ShoppingCart, ArrowLeft } from 'lucide-react';
 import { CartItem } from './CartItem';
 import { EmptyState } from '../Common/EmptyState';
 import toast from 'react-hot-toast';
+import { API_URL } from '../../services/api';
 
 export const Cart = ({ cart, onRemove, onBack, token, onBookingCreated }) => {
   const createBooking = async () => {
@@ -12,7 +13,7 @@ export const Cart = ({ cart, onRemove, onBack, token, onBookingCreated }) => {
         quantity: c.quantity
       }));
 
-      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/bookings`, {
+      const res = await fetch(`${API_URL}/api/bookings`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
